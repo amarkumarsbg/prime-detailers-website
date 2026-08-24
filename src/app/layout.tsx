@@ -68,9 +68,9 @@ export default function RootLayout({
         className={`${manrope.variable} ${sora.variable} min-h-screen bg-background font-sans text-foreground antialiased`}
       >
         <div className="relative flex min-h-screen flex-col overflow-x-hidden">
-          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_5%_0%,color-mix(in_oklch,var(--primary),white_75%)_0%,transparent_32%),radial-gradient(circle_at_95%_0%,color-mix(in_oklch,var(--primary),white_68%)_0%,transparent_35%),linear-gradient(180deg,color-mix(in_oklch,var(--primary),white_95%)_0%,var(--background)_42%)]" />
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_8%_0%,color-mix(in_oklch,var(--primary),white_72%)_0%,transparent_34%),radial-gradient(circle_at_92%_0%,color-mix(in_oklch,var(--primary),white_74%)_0%,transparent_36%),linear-gradient(180deg,color-mix(in_oklch,var(--primary),white_95%)_0%,var(--background)_46%)]" />
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pt-20 sm:pt-24">{children}</main>
         <Footer />
         </div>
       </body>

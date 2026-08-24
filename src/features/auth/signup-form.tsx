@@ -4,6 +4,7 @@ import { FormEvent, useMemo, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { signup } from "@/api/signup";
 import { mapApiError } from "@/lib/error-messages";
+import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -39,7 +40,7 @@ export function SignupForm() {
     setIsLoading(true);
 
     try {
-      await signup({
+      const result = await signup({
         businessName: businessName.trim(),
         ownerName: ownerName.trim(),
         email: email.trim(),
@@ -49,6 +50,9 @@ export function SignupForm() {
       });
 
       setSuccess("Account created. Redirecting to workshop app...");
+      if (result.organizationId) {
+        window.location.href = siteConfig.workshopAppUrl;
+      }
     } catch (err) {
       setError(mapApiError(err));
     } finally {
@@ -57,7 +61,7 @@ export function SignupForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 rounded-xl border border-border bg-card p-5">
+    <form onSubmit={handleSubmit} className="marketing-surface space-y-4 p-6 sm:p-7">
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2 sm:col-span-2">
           <Label htmlFor="businessName">Business Name</Label>
@@ -117,7 +121,7 @@ export function SignupForm() {
         </div>
       </div>
 
-      <Button type="submit" size="lg" disabled={isLoading || passwordMismatch}>
+      <Button type="submit" size="lg" disabled={isLoading || passwordMismatch} className="w-full sm:w-auto">
         {isLoading ? (
           <>
             <Loader2 className="size-4 animate-spin" />

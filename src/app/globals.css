@@ -49,23 +49,23 @@
 }
 
 :root {
-  --background: oklch(0.99 0.006 95);
-  --foreground: oklch(0.25 0.02 260);
+  --background: oklch(0.985 0.004 250);
+  --foreground: oklch(0.25 0.02 262);
   --card: oklch(1 0.002 95);
   --card-foreground: oklch(0.25 0.02 260);
   --popover: oklch(1 0.002 95);
   --popover-foreground: oklch(0.25 0.02 260);
-  --primary: oklch(0.57 0.14 234);
+  --primary: oklch(0.56 0.17 258);
   --primary-foreground: oklch(0.98 0.004 220);
-  --secondary: oklch(0.95 0.015 95);
+  --secondary: oklch(0.95 0.01 252);
   --secondary-foreground: oklch(0.31 0.03 255);
-  --muted: oklch(0.96 0.012 95);
+  --muted: oklch(0.96 0.009 250);
   --muted-foreground: oklch(0.47 0.02 258);
-  --accent: oklch(0.92 0.02 96);
+  --accent: oklch(0.93 0.015 260);
   --accent-foreground: oklch(0.33 0.03 260);
   --destructive: oklch(0.62 0.205 26);
-  --border: oklch(0.9 0.015 95);
-  --input: oklch(0.92 0.013 95);
+  --border: oklch(0.88 0.012 255);
+  --input: oklch(0.93 0.01 255);
   --ring: oklch(0.63 0.13 235);
   --chart-1: oklch(0.71 0.12 235);
   --chart-2: oklch(0.67 0.16 155);
@@ -134,5 +134,64 @@
   h5,
   h6 {
     @apply font-heading;
+  }
+}
+
+@layer utilities {
+  .marketing-surface {
+    @apply rounded-3xl border border-white/70 bg-white/80 shadow-[0_20px_60px_-40px_color-mix(in_oklch,var(--primary),black_72%)] backdrop-blur;
+  }
+
+  .marketing-grid {
+    background-image: linear-gradient(to right, color-mix(in_oklch, var(--border), transparent 55%) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in_oklch, var(--border), transparent 55%) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .text-gradient {
+    background: linear-gradient(115deg, color-mix(in oklch, var(--foreground), black 8%), color-mix(in oklch, var(--primary), black 5%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  .animation-delay-1 {
+    animation-delay: 80ms;
+  }
+
+  .animation-delay-2 {
+    animation-delay: 160ms;
+  }
+
+  .animation-delay-3 {
+    animation-delay: 240ms;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-up {
+    animation: reveal-up 600ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes reveal-up {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
   }
 }

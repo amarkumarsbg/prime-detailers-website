@@ -13,11 +13,10 @@ export const siteConfig = {
     workshop: process.env.NEXT_PUBLIC_WORKSHOP_APP_URL ?? "https://app.primedetailers.com",
   },
   nav: [
-    { label: "Home", href: "/" },
     { label: "Features", href: "/features" },
+    { label: "Solutions", href: "/solutions" },
     { label: "Pricing", href: "/pricing" },
     { label: "How It Works", href: "/how-it-works" },
     { label: "FAQ", href: "/faq" },
-    { label: "Contact", href: "/contact" },
   ],
 } as const;

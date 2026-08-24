@@ -69,9 +69,9 @@ export function PricingCalculator() {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
-      <form onSubmit={onSubmit} className="space-y-4 rounded-xl border border-border bg-card p-5">
+      <form onSubmit={onSubmit} className="marketing-surface space-y-5 p-6 sm:p-7">
         <div className="space-y-1">
-          <h3 className="font-heading text-lg font-semibold">Pricing Calculator</h3>
+          <h3 className="font-heading text-xl font-semibold">Pricing Calculator</h3>
           <p className="text-sm text-muted-foreground">
             Quote is calculated by backend pricing rules. Final payable amount is never computed only in frontend.
           </p>
@@ -86,7 +86,7 @@ export function PricingCalculator() {
           <Label htmlFor="validity">Validity</Label>
           <select
             id="validity"
-            className="h-8 w-full rounded-lg border border-input bg-transparent px-2.5 text-sm"
+            className="h-10 w-full rounded-xl border border-input bg-white px-3 text-sm"
             value={termMonths}
             onChange={(e) => setTermMonths(Number(e.target.value) as 12 | 24 | 36 | 60)}
           >
@@ -136,7 +136,7 @@ export function PricingCalculator() {
           )}
         </div>
 
-        <Button type="submit" size="lg" disabled={isLoading}>
+        <Button type="submit" size="lg" disabled={isLoading} className="w-full sm:w-auto">
           {isLoading ? (
             <>
               <Loader2 className="size-4 animate-spin" />
@@ -155,8 +155,8 @@ export function PricingCalculator() {
         )}
       </form>
 
-      <div className="rounded-xl border border-border bg-card p-5">
-        <h4 className="font-heading text-base font-semibold">Quote Summary</h4>
+      <div className="marketing-surface p-6 sm:p-7">
+        <h4 className="font-heading text-xl font-semibold">Quote Summary</h4>
         <dl className="mt-4 space-y-2 text-sm">
           {tableRows.map((row) => (
             <div key={row.label} className="flex items-center justify-between gap-4 border-b border-border/60 py-2">
@@ -165,9 +165,9 @@ export function PricingCalculator() {
             </div>
           ))}
         </dl>
-        <div className="mt-4 flex items-center justify-between rounded-lg bg-muted/70 p-3">
+        <div className="mt-4 flex items-center justify-between rounded-xl border border-border bg-white p-4">
           <p className="text-sm font-semibold">Final Amount</p>
-          <p className="font-heading text-xl font-semibold">
+          <p className="font-heading text-2xl font-semibold">
             {quote ? formatMoney(quote.totalAmount, quote.currency) : "--"}
           </p>
         </div>

@@ -39,7 +39,7 @@ export function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 rounded-xl border border-border bg-card p-5">
+    <form onSubmit={handleSubmit} className="marketing-surface space-y-4 p-6 sm:p-7">
       <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
         <Input
@@ -61,7 +61,7 @@ export function LoginForm() {
         />
       </div>
 
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-3 pt-1">
         <Button type="submit" size="lg" disabled={isLoading}>
           {isLoading ? (
             <>

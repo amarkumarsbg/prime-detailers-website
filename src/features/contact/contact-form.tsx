@@ -42,7 +42,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 rounded-xl border border-border bg-card p-5">
+    <form onSubmit={handleSubmit} className="marketing-surface space-y-4 p-6 sm:p-7">
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="name">Name</Label>
@@ -71,14 +71,14 @@ export function ContactForm() {
         <Label htmlFor="message">Message</Label>
         <textarea
           id="message"
-          className="min-h-28 w-full rounded-lg border border-input bg-transparent px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          className="min-h-28 w-full rounded-xl border border-input bg-white px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           required
         />
       </div>
 
-      <Button type="submit" size="lg" disabled={isLoading}>
+      <Button type="submit" size="lg" disabled={isLoading} className="w-full sm:w-auto">
         {isLoading ? (
           <>
             <Loader2 className="size-4 animate-spin" />

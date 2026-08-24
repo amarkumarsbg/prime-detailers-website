@@ -1,6 +1,7 @@
 export const publicPages = [
   "/",
   "/features",
+  "/solutions",
   "/pricing",
   "/how-it-works",
   "/about",
@@ -61,39 +62,39 @@ export const faqItems = [
       "Prime Detailers is a workshop management platform built for auto detailing and service operations. It helps manage jobs, customers, inventory, staff, and finances from one place.",
   },
   {
-    question: "How does the workshop app work?",
+    question: "Who is Prime Detailers for?",
     answer:
-      "Your team runs daily operations inside the Workshop App, including job cards, inspections, billing, and customer updates. This public site is for sales, signup, and onboarding.",
+      "Prime Detailers is designed for detailing and workshop businesses that need connected control over operations, customers, inventory, staff, and finances.",
   },
   {
-    question: "How many users are included?",
+    question: "Can I manage multiple branches?",
     answer:
-      "The BASIC plan starts with 3 users for 1 branch. You can add extra users and branches during subscription setup.",
+      "Yes. Branch support is part of the SaaS subscription model, and branch-wise data can be managed centrally according to your plan limits.",
   },
   {
-    question: "How do branches work?",
+    question: "How does pricing work?",
     answer:
-      "Each organization starts with one default branch. Additional branches can be added based on your subscription and limits.",
+      "Pricing is calculated by backend subscription rules using selected validity, extra branches, extra users, onboarding, referral discount, and GST.",
   },
   {
-    question: "What happens when subscription expires?",
+    question: "What happens when my subscription expires?",
     answer:
-      "Access behavior depends on your subscription status and backend entitlement rules such as active, grace, or locked states.",
+      "Access behavior follows backend entitlement status such as active, grace, or locked states. The website does not override those rules.",
   },
   {
-    question: "How does renewal work?",
+    question: "Can I add users?",
     answer:
-      "Renewals are handled using the subscription APIs, where term and add-ons can be updated and billed according to platform pricing rules.",
+      "Yes. Extra users can be added as add-ons on top of your base plan limits.",
   },
   {
-    question: "Is data deleted after expiry?",
+    question: "Can I add branches?",
     answer:
-      "Data retention and account access follow backend platform policy. This website does not enforce or override those lifecycle rules.",
+      "Yes. Extra branches can be added based on your subscription and billing configuration.",
   },
   {
-    question: "How do WhatsApp features work?",
+    question: "How does onboarding work?",
     answer:
-      "WhatsApp communication is available through configured workflows in the product stack. Final behavior depends on backend and integration setup.",
+      "Onboarding includes organization setup, owner account, default branch setup, and subscription/trial flow based on backend capabilities.",
   },
 ] as const;
 

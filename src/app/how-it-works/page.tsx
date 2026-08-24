@@ -4,32 +4,48 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
   title: "How It Works",
-  description: "See the onboarding journey from pricing to signup, organization setup, and workshop app access.",
+  description: "See the onboarding journey from pricing and signup to workshop operations and branch growth.",
   path: "/how-it-works",
 });
 
 const steps = [
-  "Choose your plan and validity on Pricing.",
-  "Create your account on Signup with business and owner details.",
-  "Organization, owner account, and default branch are created by backend workflow.",
-  "Subscription/trial entitlement is applied based on backend capabilities.",
-  "Team starts using the Workshop App at app.primedetailers.com.",
+  {
+    id: "01",
+    title: "Create your workshop",
+    description: "Start from pricing, sign up your business, and initialize organization setup.",
+  },
+  {
+    id: "02",
+    title: "Set up your team",
+    description: "Add staff users and map access based on roles and branch responsibilities.",
+  },
+  {
+    id: "03",
+    title: "Start managing jobs",
+    description: "Move daily operations to job cards, inspections, billing, and customer communication.",
+  },
+  {
+    id: "04",
+    title: "Grow your business",
+    description: "Scale branches, users, and reporting visibility with your subscription model.",
+  },
 ];
 
 export default function HowItWorksPage() {
   return (
     <PageShell
-      title="How Prime Detailers Works"
-      description="A clean onboarding flow designed to take workshop teams from interest to operations quickly."
+      title="A Clear Four-Step Onboarding Flow"
+      description="Prime Detailers is structured to move your workshop from setup to stable operations quickly."
     >
-      <ol className="space-y-3">
-        {steps.map((step, index) => (
-          <li key={step} className="rounded-xl border border-border bg-card p-4 text-sm">
-            <p className="font-semibold">Step {index + 1}</p>
-            <p className="mt-1 text-muted-foreground">{step}</p>
-          </li>
+      <div className="grid gap-4 md:grid-cols-2">
+        {steps.map((step) => (
+          <article key={step.id} className="marketing-surface p-6">
+            <p className="text-4xl font-semibold text-primary/70">{step.id}</p>
+            <h2 className="mt-3 text-xl font-semibold">{step.title}</h2>
+            <p className="mt-2 text-sm text-muted-foreground">{step.description}</p>
+          </article>
         ))}
-      </ol>
+      </div>
     </PageShell>
   );
 }
