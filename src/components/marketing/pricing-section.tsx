@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 export function PricingSection({ compact = false }: { compact?: boolean }) {
   return (
-    <section className={compact ? "mt-2" : "section-pad"} id="pricing">
+    <section className={compact ? "mt-2" : "pt-10 pb-16 sm:pt-12 sm:pb-20"} id="pricing">
       {!compact && (
         <div className="mx-auto max-w-2xl text-center">
           <p className="eyebrow">Pricing</p>

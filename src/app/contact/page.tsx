@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { ContactForm } from "@/features/contact/contact-form";
-import { PageShell } from "@/features/shared/page-shell";
+import { ContactSection } from "@/components/marketing/contact-section";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
@@ -12,11 +11,8 @@ export const metadata: Metadata = buildMetadata({
 
 export default function ContactPage() {
   return (
-    <PageShell
-      title="Talk to the Prime Detailers team"
-      description="Share your workshop details and we will follow up about product fit, pricing, or onboarding."
-    >
-      <ContactForm />
-    </PageShell>
+    <div className="min-h-screen bg-slate-950 pt-10">
+      <ContactSection />
+    </div>
   );
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SignupForm } from "@/features/auth/signup-form";
 import { buildMetadata } from "@/lib/metadata";
+import { Car } from "lucide-react";
 
 export const metadata: Metadata = buildMetadata({
   title: "Start Free Trial",
@@ -11,29 +12,24 @@ export const metadata: Metadata = buildMetadata({
 
 export default function SignupPage() {
   return (
-    <section className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:py-16">
-      <div className="max-w-md">
-        <p className="eyebrow">Start free trial</p>
-        <h1 className="mt-3 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-          Start your free trial
-        </h1>
-        <p className="mt-4 text-muted-foreground">
-          Create your workshop account in a few minutes. Backend onboarding will connect later —
-          this form is production-ready for UI, validation, and future API integration.
-        </p>
-        <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
-          <li>• Set up your workshop profile</li>
-          <li>• Invite your team when ready</li>
-          <li>• Explore job cards, billing, and portal workflows</li>
-        </ul>
-        <p className="mt-8 text-sm text-muted-foreground">
-          Prefer to talk first?{" "}
-          <Link href="/contact" className="font-medium text-primary hover:underline">
-            Contact sales
+    <div className="bg-slate-50 min-h-screen flex items-center justify-center p-4 py-12">
+      <div className="w-full max-w-xl bg-white rounded-2xl shadow-sm border border-slate-200 p-8 sm:p-10">
+        <div className="text-center mb-8 flex flex-col items-center">
+          <Link href="/">
+            <div className="flex size-14 items-center justify-center rounded-full bg-teal-600 text-white shadow-sm mb-4">
+              <Car className="size-7" />
+            </div>
           </Link>
-        </p>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+            Create Your Account
+          </h1>
+          <p className="mt-2 text-sm text-slate-500">
+            Get started with a 7-day premium trial
+          </p>
+        </div>
+
+        <SignupForm />
       </div>
-      <SignupForm />
-    </section>
+    </div>
   );
 }

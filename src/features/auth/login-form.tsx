@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription, AlertTitle } from "@/features/shared/alert";
+import { cn } from "@/lib/utils";
 
 export function LoginForm() {
   const [email, setEmail] = useState("");
@@ -35,34 +36,39 @@ export function LoginForm() {
     }
   }
 
+  const inputClasses = "bg-white border-slate-300 text-slate-900 focus-visible:ring-teal-600 focus-visible:border-teal-600 rounded-lg h-11 shadow-sm";
+  const labelClasses = "text-sm font-semibold text-slate-900";
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-border bg-white p-6 sm:p-8">
-      <div className="space-y-2">
-        <Label htmlFor="email">Email</Label>
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="space-y-2 text-left">
+        <Label htmlFor="email" className={labelClasses}>Email / Phone Number</Label>
         <Input
           id="email"
           type="email"
+          placeholder="Enter your email or phone number"
+          className={inputClasses}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
           autoComplete="email"
         />
       </div>
-      <div className="space-y-2">
+      <div className="space-y-2 text-left">
         <div className="flex items-center justify-between gap-3">
-          <Label htmlFor="password">Password</Label>
-          <button
-            type="button"
-            className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
-            disabled
-            title="Coming soon"
+          <Label htmlFor="password" className={labelClasses}>Password</Label>
+          <Link
+            href="/forgot-password"
+            className="text-xs font-semibold text-teal-700 hover:text-teal-600"
           >
-            Forgot Password
-          </button>
+            Forgot Password?
+          </Link>
         </div>
         <Input
           id="password"
           type="password"
+          placeholder="Enter your password"
+          className={inputClasses}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -70,33 +76,33 @@ export function LoginForm() {
         />
       </div>
 
-      <Button type="submit" size="lg" disabled={isLoading} className="btn-marketing w-full">
+      <Button type="submit" size="lg" disabled={isLoading} className="w-full h-11 rounded-lg bg-teal-600 hover:bg-teal-700 text-white font-medium shadow-sm">
         {isLoading ? (
           <>
-            <Loader2 className="size-4 animate-spin" />
+            <Loader2 className="mr-2 size-4 animate-spin" />
             Signing in...
           </>
         ) : (
-          "Login"
+          "Sign In"
         )}
       </Button>
 
-      <p className="text-sm text-muted-foreground">
-        Don&apos;t have an account?{" "}
-        <Link href="/signup" className="font-medium text-primary hover:underline">
-          Start Free Trial
+      <p className="text-center text-sm text-slate-600 mt-6">
+        Don't have an account?{" "}
+        <Link href="/signup" className="font-semibold text-teal-600 hover:underline">
+          Sign Up
         </Link>
       </p>
 
       {error && (
-        <Alert tone="error">
+        <Alert tone="error" className="mt-4">
           <AlertTitle>Sign in failed</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
 
       {success && (
-        <Alert tone="success">
+        <Alert tone="success" className="mt-4">
           <AlertTitle>Ready for integration</AlertTitle>
           <AlertDescription>{success}</AlertDescription>
         </Alert>

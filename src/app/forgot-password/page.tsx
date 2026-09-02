@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LoginForm } from "@/features/auth/login-form";
+import { ForgotPasswordForm } from "@/features/auth/forgot-password-form";
 import { buildMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/config/site";
 import { Car } from "lucide-react";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Login",
-  description: "Sign in to Prime Detailers to continue to your workshop workspace.",
-  path: "/login",
+  title: "Forgot Password",
+  description: "Reset your Prime Detailers account password.",
+  path: "/forgot-password",
 });
 
-export default function LoginPage() {
+export default function ForgotPasswordPage() {
   return (
     <div className="bg-slate-50 min-h-screen flex items-center justify-center p-4 py-12">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-slate-200 p-8 sm:p-10">
@@ -22,14 +22,14 @@ export default function LoginPage() {
             </div>
           </Link>
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">
-            Welcome to {siteConfig.name}
+            Forgot Password
           </h1>
-          <p className="mt-2 text-sm text-slate-500">
-            Sign in to your account to continue
+          <p className="mt-2 text-sm text-slate-500 max-w-[280px]">
+            Enter your registered email to receive a One-Time Password (OTP)
           </p>
         </div>
 
-        <LoginForm />
+        <ForgotPasswordForm />
       </div>
       
       <div className="absolute bottom-6 right-6">

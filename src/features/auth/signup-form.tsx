@@ -9,16 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription, AlertTitle } from "@/features/shared/alert";
-
-const PASSWORD_RULES = [
-  "At least 8 characters",
-  "At least one letter",
-  "At least one number",
-];
-
-function passwordMeetsRequirements(password: string) {
-  return password.length >= 8 && /[A-Za-z]/.test(password) && /\d/.test(password);
-}
+import { cn } from "@/lib/utils";
 
 export function SignupForm() {
   const [businessName, setBusinessName] = useState("");
@@ -27,7 +18,6 @@ export function SignupForm() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [branchName, setBranchName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -37,11 +27,6 @@ export function SignupForm() {
     [password, confirmPassword]
   );
 
-  const weakPassword = useMemo(
-    () => password.length > 0 && !passwordMeetsRequirements(password),
-    [password]
-  );
-
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError(null);
@@ -49,11 +34,6 @@ export function SignupForm() {
 
     if (passwordMismatch) {
       setError("Password and confirm password must match.");
-      return;
-    }
-
-    if (!passwordMeetsRequirements(password)) {
-      setError("Password does not meet the requirements.");
       return;
     }
 
@@ -71,11 +51,10 @@ export function SignupForm() {
         email: email.trim(),
         phone: phone.trim(),
         password,
-        branchName: branchName.trim() || undefined,
       });
 
       setSuccess(
-        "Trial signup received. Backend onboarding will be connected next — you can continue exploring the website."
+        "Trial signup received. Backend onboarding will be connected next."
       );
     } catch (err) {
       setError(mapApiError(err));
@@ -84,130 +63,136 @@ export function SignupForm() {
     }
   }
 
+  const inputClasses = "bg-white border-slate-300 text-slate-900 focus-visible:ring-teal-600 focus-visible:border-teal-600 rounded-lg h-11 shadow-sm";
+  const labelClasses = "text-sm font-semibold text-slate-900 mb-2 block";
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-border bg-white p-6 sm:p-8">
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="businessName">Workshop / Business Name</Label>
-          <Input
-            id="businessName"
-            value={businessName}
-            onChange={(e) => setBusinessName(e.target.value)}
-            required
-            autoComplete="organization"
-          />
-        </div>
-        <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="ownerName">Owner Name</Label>
+    <form onSubmit={handleSubmit} className="space-y-6">
+      
+      <div className="grid gap-5 sm:grid-cols-2 text-left">
+        <div className="space-y-2">
+          <Label htmlFor="ownerName" className={labelClasses}>Full Name</Label>
           <Input
             id="ownerName"
+            className={inputClasses}
             value={ownerName}
             onChange={(e) => setOwnerName(e.target.value)}
             required
             autoComplete="name"
+            placeholder="John Doe"
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
+          <Label htmlFor="email" className={labelClasses}>Email Address</Label>
           <Input
             id="email"
             type="email"
+            className={inputClasses}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
             autoComplete="email"
+            placeholder="john@example.com"
           />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="phone">Mobile Number</Label>
+        <div className="space-y-2 sm:col-span-2">
+          <Label htmlFor="phone" className={labelClasses}>Phone Number</Label>
+          <div className="flex gap-2">
+            <div className="flex items-center justify-center px-3 border border-slate-300 rounded-lg bg-slate-50 text-sm">
+              🇮🇳 +91
+            </div>
+            <Input
+              id="phone"
+              type="tel"
+              className={cn(inputClasses, "flex-1")}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+              autoComplete="tel"
+              placeholder="Enter 10 digit phone number"
+            />
+          </div>
+        </div>
+        <div className="space-y-2 sm:col-span-2">
+          <Label htmlFor="businessName" className={labelClasses}>Workshop / Company Name</Label>
           <Input
-            id="phone"
-            type="tel"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            id="businessName"
+            className={inputClasses}
+            value={businessName}
+            onChange={(e) => setBusinessName(e.target.value)}
             required
-            autoComplete="tel"
+            autoComplete="organization"
+            placeholder="My Workshop"
           />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="password">Password</Label>
+        
+        <div className="space-y-2 sm:col-span-2">
+          <Label htmlFor="password" className={labelClasses}>Password</Label>
           <Input
             id="password"
             type="password"
+            className={inputClasses}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             autoComplete="new-password"
-            aria-describedby="password-requirements"
+            placeholder="Min 6 characters"
           />
-          {weakPassword && (
-            <p className="text-xs text-destructive">Password does not meet requirements.</p>
-          )}
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="confirmPassword">Confirm Password</Label>
+        
+        <div className="space-y-2 sm:col-span-2">
+          <Label htmlFor="confirmPassword" className={labelClasses}>Confirm Password</Label>
           <Input
             id="confirmPassword"
             type="password"
+            className={inputClasses}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
             autoComplete="new-password"
+            placeholder="Confirm password"
           />
-          {passwordMismatch && <p className="text-xs text-destructive">Passwords do not match.</p>}
-        </div>
-        <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="branchName">Branch Name (Optional)</Label>
-          <Input
-            id="branchName"
-            value={branchName}
-            onChange={(e) => setBranchName(e.target.value)}
-            placeholder="Main Branch"
-          />
+          {passwordMismatch && <p className="text-xs text-red-600 font-medium">Passwords do not match.</p>}
         </div>
       </div>
 
-      <div id="password-requirements" className="rounded-xl bg-slate-50 px-4 py-3 text-xs text-muted-foreground">
-        <p className="font-medium text-foreground">Password requirements</p>
-        <ul className="mt-2 list-disc space-y-1 pl-4">
-          {PASSWORD_RULES.map((rule) => (
-            <li key={rule}>{rule}</li>
-          ))}
-        </ul>
+      <div className="border border-dashed border-slate-300 rounded-xl p-4 flex items-center justify-center bg-slate-50 text-slate-600 text-sm cursor-pointer hover:bg-slate-100 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+        Upload Logo (Optional)
       </div>
 
       <Button
         type="submit"
         size="lg"
-        disabled={isLoading || passwordMismatch || weakPassword}
-        className="btn-marketing w-full sm:w-auto"
+        disabled={isLoading || passwordMismatch}
+        className="w-full h-11 rounded-lg bg-teal-600 hover:bg-teal-700 text-white font-medium shadow-sm mt-6"
       >
         {isLoading ? (
           <>
-            <Loader2 className="size-4 animate-spin" />
+            <Loader2 className="mr-2 size-4 animate-spin" />
             Creating trial account...
           </>
         ) : (
-          "Start Free Trial"
+          "Sign Up & Start Free Trial"
         )}
       </Button>
 
-      <p className="text-sm text-muted-foreground">
+      <p className="text-center text-sm text-slate-600 mt-6">
         Already have an account?{" "}
-        <Link href="/login" className="font-medium text-primary hover:underline">
-          Login
+        <Link href="/login" className="font-semibold text-teal-600 hover:underline">
+          Sign In
         </Link>
       </p>
 
       {error && (
-        <Alert tone="error">
+        <Alert tone="error" className="mt-4">
           <AlertTitle>Signup failed</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
 
       {success && (
-        <Alert tone="success">
+        <Alert tone="success" className="mt-4">
           <AlertTitle>Signup submitted</AlertTitle>
           <AlertDescription>{success}</AlertDescription>
         </Alert>

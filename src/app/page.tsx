@@ -11,6 +11,7 @@ import { PricingSection } from "@/components/marketing/pricing-section";
 import { TestimonialsSection } from "@/components/marketing/testimonials-section";
 import { FaqSection } from "@/components/marketing/faq-section";
 import { CtaSection } from "@/components/marketing/cta-section";
+import { ContactSection } from "@/components/marketing/contact-section";
 
 export default function Home() {
   return (
@@ -19,12 +20,25 @@ export default function Home() {
       <TrustStrip />
       <WorkshopTypes />
       <ProblemSection />
-      <SolutionSection />
-      <ProductShowcase />
-      <PortalSection />
-      <WhySection />
-      <HowItWorksSection />
-      <PricingSection />
+      
+      <div id="solutions">
+        <SolutionSection />
+      </div>
+      
+      <div id="features">
+        <ProductShowcase />
+        <PortalSection />
+      </div>
+      
+      <div id="about">
+        <WhySection />
+        <HowItWorksSection />
+      </div>
+      
+      <div id="pricing">
+        <PricingSection />
+      </div>
+      
       <CtaSection
         title="Ready to modernize your workshop?"
         description="Start a free trial and see how Prime Detailers centralizes workshop operations."
@@ -33,12 +47,10 @@ export default function Home() {
       />
       <TestimonialsSection />
       <FaqSection />
-      <CtaSection
-        title="Your workshop deserves better tools."
-        description="Start your free trial today, or talk to sales about multi-branch growth."
-        secondaryLabel="Talk to Sales"
-        secondaryHref="/contact"
-      />
+      
+      <div id="contact">
+        <ContactSection />
+      </div>
     </>
   );
 }

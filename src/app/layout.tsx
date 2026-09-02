@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Sora } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
-import { ScrollToTop } from "@/components/marketing/scroll-to-top";
+import { SiteLayout } from "@/components/layout/site-layout";
 import { siteConfig } from "@/config/site";
 
 const manrope = Manrope({
@@ -73,12 +71,7 @@ export default function RootLayout({
       <body
         className={`${manrope.variable} ${sora.variable} min-h-screen bg-background font-sans text-foreground antialiased`}
       >
-        <div className="relative flex min-h-screen flex-col overflow-x-hidden">
-          <Navbar />
-          <main className="flex-1 pt-14 sm:pt-16">{children}</main>
-          <Footer />
-          <ScrollToTop />
-        </div>
+        <SiteLayout>{children}</SiteLayout>
       </body>
     </html>
   );
