@@ -6,7 +6,7 @@ export function WhySection() {
       <div className="max-w-2xl">
         <p className="eyebrow">Why Prime Detailers</p>
         <h2 className="mt-3 text-balance text-3xl font-semibold sm:text-4xl">
-          Built specifically for workshops that want to grow with clarity.
+          Designed for workshops that want clarity as they grow.
         </h2>
       </div>
 

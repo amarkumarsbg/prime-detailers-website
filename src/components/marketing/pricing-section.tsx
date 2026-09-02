@@ -11,10 +11,10 @@ export function PricingSection({ compact = false }: { compact?: boolean }) {
         <div className="mx-auto max-w-2xl text-center">
           <p className="eyebrow">Pricing</p>
           <h2 className="mt-3 text-balance text-3xl font-semibold sm:text-4xl">
-            Simple plans for workshops at every stage.
+            Plans that scale with your workshop.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Start with a free trial, then choose the plan that matches your branches and team size.
+            Start with a free trial, then choose based on branches and team size.
           </p>
         </div>
       )}
@@ -24,10 +24,8 @@ export function PricingSection({ compact = false }: { compact?: boolean }) {
           <article
             key={plan.id}
             className={cn(
-              "flex flex-col rounded-2xl border bg-white p-6 transition-shadow hover:shadow-[0_18px_40px_-32px_rgba(15,23,42,0.45)]",
-              plan.highlighted
-                ? "border-primary shadow-[0_18px_40px_-32px_rgba(15,23,42,0.35)]"
-                : "border-border"
+              "flex flex-col rounded-2xl border bg-white p-6",
+              plan.highlighted ? "border-primary shadow-sm" : "border-border"
             )}
           >
             {plan.highlighted && (
@@ -42,16 +40,12 @@ export function PricingSection({ compact = false }: { compact?: boolean }) {
               <p className="mt-1 text-xs text-muted-foreground">{plan.billingDuration}</p>
             </div>
             <div className="mt-4 space-y-1 border-y border-border py-4 text-sm">
-              <p>
-                <span className="font-medium">{plan.branches}</span>
-              </p>
-              <p>
-                <span className="font-medium">{plan.users}</span>
-              </p>
+              <p className="font-medium">{plan.branches}</p>
+              <p className="font-medium">{plan.users}</p>
             </div>
             <ul className="mt-4 flex-1 space-y-2.5">
               {plan.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-2 text-sm text-foreground">
+                <li key={feature} className="flex items-start gap-2 text-sm">
                   <Check className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
                   <span>{feature}</span>
                 </li>

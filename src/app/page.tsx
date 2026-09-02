@@ -25,7 +25,7 @@ export default function Home() {
       <PricingSection />
       <CtaSection
         title="Ready to modernize your workshop?"
-        description="Start a free trial and explore how Prime Detailers can centralize your workshop operations."
+        description="Start a free trial and see how Prime Detailers centralizes workshop operations."
         secondaryLabel="View Pricing"
         secondaryHref="/pricing"
       />
@@ -33,7 +33,7 @@ export default function Home() {
       <FaqSection />
       <CtaSection
         title="Your workshop deserves better tools."
-        description="Start your free trial today, or talk to sales about a plan for multi-branch growth."
+        description="Start your free trial today, or talk to sales about multi-branch growth."
         secondaryLabel="Talk to Sales"
         secondaryHref="/contact"
       />

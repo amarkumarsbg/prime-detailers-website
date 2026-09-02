@@ -14,7 +14,7 @@ export function Footer() {
             >
               <span
                 aria-hidden
-                className="flex size-8 items-center justify-center rounded-lg bg-primary text-xs font-bold text-primary-foreground"
+                className="flex size-8 items-center justify-center rounded-lg bg-slate-900 text-[11px] font-bold text-white"
               >
                 PD
               </span>

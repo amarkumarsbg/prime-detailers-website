@@ -13,7 +13,7 @@ export function FaqSection() {
         <div className="text-center">
           <p className="eyebrow">FAQ</p>
           <h2 className="mt-3 text-balance text-3xl font-semibold sm:text-4xl">
-            Questions workshops ask before getting started.
+            Questions before you get started.
           </h2>
         </div>
 

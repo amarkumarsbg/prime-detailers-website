@@ -2,8 +2,8 @@ type MockupKind = "hero" | "jobs" | "portal" | "billing" | "inventory";
 
 export function ProductMockup({ kind = "hero" }: { kind?: MockupKind }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-[0_28px_70px_-40px_rgba(15,23,42,0.55)]">
-      <div className="flex items-center justify-between border-b border-border bg-slate-50/80 px-4 py-2.5">
+    <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-[0_24px_60px_-36px_rgba(15,23,42,0.4)]">
+      <div className="flex items-center justify-between border-b border-border bg-slate-50 px-4 py-2.5">
         <div className="flex items-center gap-1.5" aria-hidden>
           <span className="size-2 rounded-full bg-slate-300" />
           <span className="size-2 rounded-full bg-slate-300" />
@@ -43,7 +43,7 @@ function renderBody(kind: MockupKind) {
         ].map((job) => (
           <div
             key={job.id}
-            className="grid grid-cols-[1fr_auto] items-center gap-3 rounded-xl border border-border bg-slate-50/70 px-3 py-2.5"
+            className="grid grid-cols-[1fr_auto] items-center gap-3 rounded-xl border border-border bg-slate-50/80 px-3 py-2.5"
           >
             <div>
               <p className="text-sm font-semibold">{job.car}</p>
@@ -51,7 +51,7 @@ function renderBody(kind: MockupKind) {
                 {job.id} · {job.owner}
               </p>
             </div>
-            <span className="rounded-md bg-white px-2 py-1 text-[11px] font-medium text-foreground ring-1 ring-border">
+            <span className="rounded-md bg-white px-2 py-1 text-[11px] font-medium ring-1 ring-border">
               {job.status}
             </span>
           </div>
@@ -79,13 +79,13 @@ function renderBody(kind: MockupKind) {
           <Stat label="Invoices" value="18" />
           <Stat label="Pending" value="₹8.2k" />
         </div>
-        <div className="rounded-xl border border-border bg-slate-50/70 p-3">
+        <div className="rounded-xl border border-border bg-slate-50/80 p-3">
           <p className="text-xs text-muted-foreground">Revenue trend</p>
           <div className="mt-3 flex h-20 items-end gap-1.5">
             {[40, 55, 48, 70, 62, 78, 85].map((h, i) => (
               <div
                 key={i}
-                className="flex-1 rounded-t bg-primary/80"
+                className="flex-1 rounded-t bg-primary/75"
                 style={{ height: `${h}%` }}
                 aria-hidden
               />
@@ -107,7 +107,7 @@ function renderBody(kind: MockupKind) {
         ].map((item) => (
           <div
             key={item.name}
-            className="flex items-center justify-between rounded-xl border border-border bg-slate-50/70 px-3 py-2.5"
+            className="flex items-center justify-between rounded-xl border border-border bg-slate-50/80 px-3 py-2.5"
           >
             <p className="text-sm font-medium">{item.name}</p>
             <p
@@ -136,10 +136,10 @@ function renderBody(kind: MockupKind) {
         </div>
         <div className="rounded-xl border border-border p-3">
           <p className="text-xs text-muted-foreground">Recent activity</p>
-          <ul className="mt-2 space-y-2 text-xs text-foreground">
-            <li className="rounded-md bg-muted/60 px-2 py-1.5">JC-1042 moved to In Progress</li>
-            <li className="rounded-md bg-muted/60 px-2 py-1.5">Invoice INV-2890 collected</li>
-            <li className="rounded-md bg-muted/60 px-2 py-1.5">Customer portal update sent</li>
+          <ul className="mt-2 space-y-2 text-xs">
+            <li className="rounded-md bg-muted px-2 py-1.5">JC-1042 moved to In Progress</li>
+            <li className="rounded-md bg-muted px-2 py-1.5">Invoice INV-2890 collected</li>
+            <li className="rounded-md bg-muted px-2 py-1.5">Customer portal update sent</li>
           </ul>
         </div>
       </div>
@@ -163,7 +163,7 @@ function Stat({ label, value }: { label: string; value: string }) {
 
 function Panel({ label, value, meta }: { label: string; value: string; meta: string }) {
   return (
-    <div className="rounded-xl border border-border bg-slate-50/70 p-3">
+    <div className="rounded-xl border border-border bg-slate-50/80 p-3">
       <p className="text-[11px] text-muted-foreground">{label}</p>
       <p className="mt-1 text-sm font-semibold">{value}</p>
       <p className="mt-1 text-[11px] text-muted-foreground">{meta}</p>

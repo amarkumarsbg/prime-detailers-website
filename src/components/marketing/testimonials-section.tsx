@@ -5,7 +5,7 @@ export function TestimonialsSection() {
     <section className="border-y border-border/70 bg-white">
       <div className="section-pad">
         <div className="max-w-2xl">
-          <p className="eyebrow">What workshops want</p>
+          <p className="eyebrow">From the floor</p>
           <h2 className="mt-3 text-balance text-3xl font-semibold sm:text-4xl">
             Clearer operations. Less manual chase.
           </h2>
@@ -16,7 +16,7 @@ export function TestimonialsSection() {
           {testimonials.map((item) => (
             <figure
               key={item.id}
-              className="flex flex-col rounded-2xl border border-border bg-slate-50/50 p-6"
+              className="flex flex-col rounded-2xl border border-border bg-slate-50/60 p-6"
             >
               <blockquote className="flex-1 text-sm leading-7 text-foreground">
                 “{item.quote}”

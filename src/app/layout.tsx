@@ -3,6 +3,7 @@ import { Manrope, Sora } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { ScrollToTop } from "@/components/marketing/scroll-to-top";
 import { siteConfig } from "@/config/site";
 
 const manrope = Manrope({
@@ -76,6 +77,7 @@ export default function RootLayout({
           <Navbar />
           <main className="flex-1 pt-14 sm:pt-16">{children}</main>
           <Footer />
+          <ScrollToTop />
         </div>
       </body>
     </html>

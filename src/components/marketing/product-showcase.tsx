@@ -7,7 +7,7 @@ export function ProductShowcase() {
       <div className="max-w-2xl">
         <p className="eyebrow">Product showcase</p>
         <h2 className="mt-3 text-balance text-3xl font-semibold sm:text-4xl">
-          See how Prime Detailers supports real workshop work.
+          Built around how workshops actually operate.
         </h2>
       </div>
 
