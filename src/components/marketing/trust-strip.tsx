@@ -1,21 +1,50 @@
-import { valueStripItems } from "@/data/features";
+import { solutionFeatures } from "@/data/features";
+import { StaggerContainer, StaggerItem } from "@/components/ui/stagger";
+import { FadeIn } from "@/components/ui/fade-in";
+import { ArrowRight } from "lucide-react";
 
 export function TrustStrip() {
   return (
-    <section className="bg-white">
-      <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <p className="eyebrow text-center">Everything your workshop needs in one platform</p>
-        <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-5 sm:grid-cols-3 lg:grid-cols-6">
-          {valueStripItems.map((item) => {
+    <section className="border-b border-slate-200 bg-slate-50 pt-16 pb-24 sm:pt-20 sm:pb-32">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <FadeIn className="mx-auto mb-12 max-w-2xl text-center">
+          <p className="inline-flex items-center rounded-full bg-teal-50 px-3 py-1 text-sm font-semibold text-teal-600 ring-1 ring-inset ring-teal-500/20">
+            Platform Features
+          </p>
+          <h2 className="mt-6 text-balance font-heading text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            Everything you need to run your workshop
+          </h2>
+          <p className="mt-4 text-lg text-slate-600">
+            A complete suite of tools designed specifically for modern auto detailing and repair businesses.
+          </p>
+        </FadeIn>
+        
+        <StaggerContainer className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4" staggerChildren={0.1}>
+          {solutionFeatures.map((item) => {
             const Icon = item.icon;
             return (
-              <li key={item.title} className="text-center sm:text-left">
-                <Icon className="mx-auto size-5 text-primary sm:mx-0" aria-hidden />
-                <p className="mt-2 text-sm font-medium leading-snug">{item.title}</p>
-              </li>
+              <StaggerItem 
+                key={item.title} 
+                className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-teal-500/50"
+              >
+                <div>
+                  <div className="mb-6 flex size-12 items-center justify-center rounded-xl bg-teal-50 text-teal-600 transition-colors group-hover:bg-teal-600 group-hover:text-white">
+                    <Icon className="size-6" aria-hidden />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                    {item.description}
+                  </p>
+                </div>
+                
+                <div className="mt-8 flex items-center text-sm font-semibold text-teal-600 transition-colors group-hover:text-teal-700">
+                  Explore Feature 
+                  <ArrowRight className="ml-1 size-4 transition-transform group-hover:translate-x-1" />
+                </div>
+              </StaggerItem>
             );
           })}
-        </ul>
+        </StaggerContainer>
       </div>
     </section>
   );

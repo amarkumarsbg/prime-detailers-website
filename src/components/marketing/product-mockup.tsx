@@ -2,15 +2,15 @@ type MockupKind = "hero" | "jobs" | "portal" | "billing" | "inventory";
 
 export function ProductMockup({ kind = "hero" }: { kind?: MockupKind }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-[0_24px_60px_-36px_rgba(15,23,42,0.4)]">
-      <div className="flex items-center justify-between border-b border-border bg-slate-50 px-4 py-2.5">
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl ring-1 ring-slate-900/5">
+      <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-4 py-2.5">
         <div className="flex items-center gap-1.5" aria-hidden>
-          <span className="size-2 rounded-full bg-slate-300" />
-          <span className="size-2 rounded-full bg-slate-300" />
-          <span className="size-2 rounded-full bg-slate-300" />
+          <span className="size-2.5 rounded-full bg-rose-400" />
+          <span className="size-2.5 rounded-full bg-amber-400" />
+          <span className="size-2.5 rounded-full bg-green-400" />
         </div>
-        <p className="text-[11px] font-medium text-muted-foreground">{titleFor(kind)}</p>
-        <span className="text-[11px] text-muted-foreground">Prime Detailers</span>
+        <p className="text-[11px] font-medium text-slate-500">{titleFor(kind)}</p>
+        <span className="text-[11px] font-semibold text-slate-400">Prime Detailers</span>
       </div>
       <div className="p-4 sm:p-5">{renderBody(kind)}</div>
     </div>
@@ -43,15 +43,15 @@ function renderBody(kind: MockupKind) {
         ].map((job) => (
           <div
             key={job.id}
-            className="grid grid-cols-[1fr_auto] items-center gap-3 rounded-xl border border-border bg-slate-50/80 px-3 py-2.5"
+            className="grid grid-cols-[1fr_auto] items-center gap-3 rounded-xl border border-slate-200 bg-white px-3 py-2.5 shadow-sm transition-colors hover:bg-slate-50"
           >
             <div>
-              <p className="text-sm font-semibold">{job.car}</p>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-sm font-semibold text-slate-900">{job.car}</p>
+              <p className="text-xs text-slate-500">
                 {job.id} · {job.owner}
               </p>
             </div>
-            <span className="rounded-md bg-white px-2 py-1 text-[11px] font-medium ring-1 ring-border">
+            <span className="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-medium text-slate-700 ring-1 ring-slate-200">
               {job.status}
             </span>
           </div>
@@ -79,13 +79,13 @@ function renderBody(kind: MockupKind) {
           <Stat label="Invoices" value="18" />
           <Stat label="Pending" value="₹8.2k" />
         </div>
-        <div className="rounded-xl border border-border bg-slate-50/80 p-3">
-          <p className="text-xs text-muted-foreground">Revenue trend</p>
+        <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
+          <p className="text-xs text-slate-500">Revenue trend</p>
           <div className="mt-3 flex h-20 items-end gap-1.5">
             {[40, 55, 48, 70, 62, 78, 85].map((h, i) => (
               <div
                 key={i}
-                className="flex-1 rounded-t bg-primary/75"
+                className="flex-1 rounded-t bg-teal-500 transition-all hover:bg-teal-400"
                 style={{ height: `${h}%` }}
                 aria-hidden
               />
@@ -107,12 +107,12 @@ function renderBody(kind: MockupKind) {
         ].map((item) => (
           <div
             key={item.name}
-            className="flex items-center justify-between rounded-xl border border-border bg-slate-50/80 px-3 py-2.5"
+            className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2.5 shadow-sm transition-colors hover:bg-slate-50"
           >
-            <p className="text-sm font-medium">{item.name}</p>
+            <p className="text-sm font-medium text-slate-900">{item.name}</p>
             <p
               className={`text-xs font-medium ${
-                item.tone === "warn" ? "text-amber-700" : "text-muted-foreground"
+                item.tone === "warn" ? "text-amber-600" : "text-slate-500"
               }`}
             >
               {item.stock}
@@ -126,20 +126,20 @@ function renderBody(kind: MockupKind) {
   return (
     <div className="grid gap-3 md:grid-cols-[1.2fr_0.8fr]">
       <div className="space-y-3">
-        <div className="rounded-xl border border-border bg-slate-50/80 p-3">
-          <p className="text-xs text-muted-foreground">Today&apos;s job cards</p>
+        <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
+          <p className="text-xs text-slate-500">Today&apos;s job cards</p>
           <div className="mt-3 grid grid-cols-3 gap-2">
             <Stat label="Check-in" value="6" />
             <Stat label="In Progress" value="9" />
             <Stat label="Ready" value="4" />
           </div>
         </div>
-        <div className="rounded-xl border border-border p-3">
-          <p className="text-xs text-muted-foreground">Recent activity</p>
+        <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
+          <p className="text-xs text-slate-500">Recent activity</p>
           <ul className="mt-2 space-y-2 text-xs">
-            <li className="rounded-md bg-muted px-2 py-1.5">JC-1042 moved to In Progress</li>
-            <li className="rounded-md bg-muted px-2 py-1.5">Invoice INV-2890 collected</li>
-            <li className="rounded-md bg-muted px-2 py-1.5">Customer portal update sent</li>
+            <li className="rounded-md bg-slate-50 px-2 py-1.5 text-slate-700">JC-1042 moved to In Progress</li>
+            <li className="rounded-md bg-slate-50 px-2 py-1.5 text-slate-700">Invoice INV-2890 collected</li>
+            <li className="rounded-md bg-slate-50 px-2 py-1.5 text-slate-700">Customer portal update sent</li>
           </ul>
         </div>
       </div>
@@ -154,19 +154,19 @@ function renderBody(kind: MockupKind) {
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg bg-white p-2.5 ring-1 ring-border">
-      <p className="text-[11px] text-muted-foreground">{label}</p>
-      <p className="mt-1 text-sm font-semibold">{value}</p>
+    <div className="rounded-lg bg-slate-50 p-2.5 ring-1 ring-slate-200 transition-colors hover:bg-slate-100">
+      <p className="text-[11px] text-slate-500">{label}</p>
+      <p className="mt-1 text-sm font-semibold text-slate-900">{value}</p>
     </div>
   );
 }
 
 function Panel({ label, value, meta }: { label: string; value: string; meta: string }) {
   return (
-    <div className="rounded-xl border border-border bg-slate-50/80 p-3">
-      <p className="text-[11px] text-muted-foreground">{label}</p>
-      <p className="mt-1 text-sm font-semibold">{value}</p>
-      <p className="mt-1 text-[11px] text-muted-foreground">{meta}</p>
+    <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition-colors hover:bg-slate-50">
+      <p className="text-[11px] text-slate-500">{label}</p>
+      <p className="mt-1 text-sm font-semibold text-slate-900">{value}</p>
+      <p className="mt-1 text-[11px] text-slate-400">{meta}</p>
     </div>
   );
 }

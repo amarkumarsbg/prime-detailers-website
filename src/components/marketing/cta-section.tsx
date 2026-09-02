@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { FadeIn } from "@/components/ui/fade-in";
 
 export function CtaSection({
   title = "Ready to modernize your workshop?",
@@ -18,30 +20,51 @@ export function CtaSection({
   secondaryHref?: string;
 }) {
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
-      <div className="rounded-2xl border border-border bg-slate-900 px-6 py-12 text-white sm:px-10 sm:py-14">
-        <div className="max-w-2xl">
-          <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">{title}</h2>
-          <p className="mt-3 text-sm leading-7 text-slate-300 sm:text-base">{description}</p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Link href={primaryHref}>
-              <Button size="lg" className="btn-marketing">
-                {primaryLabel}
-                <ArrowRight className="size-4" />
-              </Button>
-            </Link>
-            <Link href={secondaryHref}>
-              <Button
-                size="lg"
-                variant="outline"
-                className="btn-marketing border-white/25 bg-transparent text-white hover:bg-white/10 hover:text-white"
-              >
-                {secondaryLabel}
-              </Button>
-            </Link>
-          </div>
+    <section className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+      <FadeIn className="relative overflow-hidden rounded-3xl px-6 py-16 text-center shadow-2xl sm:px-16 sm:py-20 lg:px-24 border border-white/10">
+        {/* Background Image */}
+        <div className="absolute inset-0 -z-20">
+          <Image
+            src="/images/cta-bg.png"
+            alt="Sports car detailing"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1280px) 100vw, 1280px"
+          />
         </div>
-      </div>
+        
+        {/* Dark Gradient Overlay for text readability */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-slate-950/95 via-slate-950/80 to-slate-950/40" />
+        
+        {/* Subtle Background Glow */}
+        <div className="absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2">
+          <div className="h-[400px] w-[600px] rounded-full bg-teal-500/20 blur-[100px] mix-blend-screen" />
+        </div>
+        
+        <h2 className="mx-auto max-w-2xl text-balance font-heading text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          {title}
+        </h2>
+        <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-slate-300 drop-shadow-md">
+          {description}
+        </p>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4 relative z-10">
+          <Link href={primaryHref}>
+            <Button size="lg" className="rounded-full bg-teal-500 px-8 py-6 text-base font-semibold text-white transition-all hover:bg-teal-400 hover:shadow-[0_0_20px_rgba(20,184,166,0.4)] border border-teal-400/50">
+              {primaryLabel}
+              <ArrowRight className="ml-2 size-5" />
+            </Button>
+          </Link>
+          <Link href={secondaryHref}>
+            <Button
+              size="lg"
+              variant="outline"
+              className="rounded-full border-white/30 bg-black/40 px-8 py-6 text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/20 hover:border-white/50"
+            >
+              {secondaryLabel}
+            </Button>
+          </Link>
+        </div>
+      </FadeIn>
     </section>
   );
 }

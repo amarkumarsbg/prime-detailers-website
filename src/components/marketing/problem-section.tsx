@@ -1,31 +1,44 @@
 import { CircleAlert } from "lucide-react";
 import { problemItems } from "@/data/features";
+import { FadeIn } from "@/components/ui/fade-in";
+import { StaggerContainer, StaggerItem } from "@/components/ui/stagger";
 
 export function ProblemSection() {
   return (
-    <section className="section-pad">
-      <div className="max-w-2xl">
-        <p className="eyebrow">The challenge</p>
-        <h2 className="mt-3 text-balance text-3xl font-semibold sm:text-4xl">
-          Running a workshop shouldn&apos;t mean managing everything manually.
-        </h2>
-        <p className="mt-4 text-muted-foreground">
-          Paper notes, spreadsheets, and chat threads create delays and limited visibility when the
-          day gets busy.
-        </p>
+    <section className="relative overflow-hidden bg-background py-24 sm:py-32">
+      {/* Decorative background blur */}
+      <div className="pointer-events-none absolute left-1/2 top-0 -z-10 -translate-x-1/2 -translate-y-1/2">
+        <div className="h-[400px] w-[800px] rounded-full bg-rose-100/50 blur-3xl" />
       </div>
 
-      <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {problemItems.map((item) => (
-          <li
-            key={item}
-            className="flex items-start gap-3 rounded-xl border border-border/80 bg-white px-4 py-4 text-sm"
-          >
-            <CircleAlert className="mt-0.5 size-4 shrink-0 text-amber-600" aria-hidden />
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <FadeIn className="mx-auto max-w-2xl text-center">
+          <p className="inline-flex items-center rounded-full bg-rose-50 px-3 py-1 text-sm font-semibold text-rose-600 ring-1 ring-inset ring-rose-500/20">
+            The Challenge
+          </p>
+          <h2 className="mt-6 text-balance font-heading text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+            Running a workshop shouldn't mean managing everything manually.
+          </h2>
+          <p className="mt-6 text-pretty text-lg text-slate-600">
+            Paper notes, spreadsheets, and chat threads create delays and limited visibility when the
+            day gets busy.
+          </p>
+        </FadeIn>
+
+        <StaggerContainer className="mx-auto mt-16 flex max-w-5xl flex-wrap justify-center gap-5" staggerChildren={0.1}>
+          {problemItems.map((item) => (
+            <StaggerItem
+              key={item}
+              className="group flex w-full items-start gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:w-[calc(50%-1.25rem)] lg:w-[calc(33.333%-1.25rem)]"
+            >
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-rose-50 text-rose-500 transition-colors group-hover:bg-rose-100 group-hover:text-rose-600">
+                <CircleAlert className="size-5" aria-hidden />
+              </div>
+              <span className="mt-2 text-sm font-medium text-slate-700 transition-colors group-hover:text-slate-900">{item}</span>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+      </div>
     </section>
   );
 }

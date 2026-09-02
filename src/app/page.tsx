@@ -1,5 +1,6 @@
 import { HeroSection } from "@/components/marketing/hero-section";
 import { TrustStrip } from "@/components/marketing/trust-strip";
+import { WorkshopTypes } from "@/components/marketing/workshop-types";
 import { ProblemSection } from "@/components/marketing/problem-section";
 import { SolutionSection } from "@/components/marketing/solution-section";
 import { ProductShowcase } from "@/components/marketing/product-showcase";
@@ -16,6 +17,7 @@ export default function Home() {
     <>
       <HeroSection />
       <TrustStrip />
+      <WorkshopTypes />
       <ProblemSection />
       <SolutionSection />
       <ProductShowcase />
