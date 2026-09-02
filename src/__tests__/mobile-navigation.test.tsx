@@ -9,6 +9,6 @@ describe("mobile navigation", () => {
     fireEvent.click(toggle);
 
     expect(screen.getAllByRole("link", { name: /features/i }).length).toBeGreaterThan(0);
-    expect(screen.getAllByRole("button", { name: /sign up/i }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("link", { name: /start free trial/i }).length).toBeGreaterThan(0);
   });
 });

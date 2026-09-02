@@ -2,11 +2,17 @@ import { render, screen } from "@testing-library/react";
 import PricingPage from "@/app/pricing/page";
 
 describe("pricing page", () => {
-  it("renders basic plan and calculator", () => {
+  it("renders centralized plan cards", () => {
     render(<PricingPage />);
 
-    expect(screen.getByRole("heading", { name: /premium saas pricing, built for workshop growth/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /1 branch • 3 users/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /get exact quote/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /transparent plans for growing workshops/i })
+    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /starter/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /growth/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /business/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /enterprise/i })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /start free trial/i }).length).toBeGreaterThan(0);
+    expect(screen.getByRole("link", { name: /contact sales/i })).toBeInTheDocument();
   });
 });

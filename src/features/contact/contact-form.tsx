@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { Loader2 } from "lucide-react";
-import { submitContact } from "@/api/contact";
+import { submitContactPublic } from "@/services/contact";
 import { mapApiError } from "@/lib/error-messages";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,7 +26,7 @@ export function ContactForm() {
     setStatus(null);
 
     try {
-      const result = await submitContact({
+      const result = await submitContactPublic({
         name: name.trim(),
         businessName: businessName.trim(),
         email: email.trim(),
@@ -42,7 +42,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="marketing-surface space-y-4 p-6 sm:p-7">
+    <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-border bg-white p-6 sm:p-8">
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="name">Name</Label>

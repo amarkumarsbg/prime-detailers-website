@@ -1,14 +1,24 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
+import Link from "next/link";
 import { Loader2 } from "lucide-react";
-import { signup } from "@/api/signup";
+import { signupPublic } from "@/services/signup";
 import { mapApiError } from "@/lib/error-messages";
-import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription, AlertTitle } from "@/features/shared/alert";
+
+const PASSWORD_RULES = [
+  "At least 8 characters",
+  "At least one letter",
+  "At least one number",
+];
+
+function passwordMeetsRequirements(password: string) {
+  return password.length >= 8 && /[A-Za-z]/.test(password) && /\d/.test(password);
+}
 
 export function SignupForm() {
   const [businessName, setBusinessName] = useState("");
@@ -17,7 +27,7 @@ export function SignupForm() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [referralCode, setReferralCode] = useState("");
+  const [branchName, setBranchName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -25,6 +35,11 @@ export function SignupForm() {
   const passwordMismatch = useMemo(
     () => confirmPassword.length > 0 && password !== confirmPassword,
     [password, confirmPassword]
+  );
+
+  const weakPassword = useMemo(
+    () => password.length > 0 && !passwordMeetsRequirements(password),
+    [password]
   );
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -37,22 +52,31 @@ export function SignupForm() {
       return;
     }
 
+    if (!passwordMeetsRequirements(password)) {
+      setError("Password does not meet the requirements.");
+      return;
+    }
+
+    if (!/^\+?[\d\s-]{8,15}$/.test(phone.trim())) {
+      setError("Enter a valid mobile number.");
+      return;
+    }
+
     setIsLoading(true);
 
     try {
-      const result = await signup({
+      await signupPublic({
         businessName: businessName.trim(),
         ownerName: ownerName.trim(),
         email: email.trim(),
         phone: phone.trim(),
         password,
-        referralCode: referralCode.trim() || undefined,
+        branchName: branchName.trim() || undefined,
       });
 
-      setSuccess("Account created. Redirecting to workshop app...");
-      if (result.organizationId) {
-        window.location.href = siteConfig.workshopAppUrl;
-      }
+      setSuccess(
+        "Trial signup received. Backend onboarding will be connected next — you can continue exploring the website."
+      );
     } catch (err) {
       setError(mapApiError(err));
     } finally {
@@ -61,15 +85,16 @@ export function SignupForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="marketing-surface space-y-4 p-6 sm:p-7">
+    <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-border bg-white p-6 sm:p-8">
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="businessName">Business Name</Label>
+          <Label htmlFor="businessName">Workshop / Business Name</Label>
           <Input
             id="businessName"
             value={businessName}
             onChange={(e) => setBusinessName(e.target.value)}
             required
+            autoComplete="organization"
           />
         </div>
         <div className="space-y-2 sm:col-span-2">
@@ -79,15 +104,30 @@ export function SignupForm() {
             value={ownerName}
             onChange={(e) => setOwnerName(e.target.value)}
             required
+            autoComplete="name"
           />
         </div>
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <Input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            autoComplete="email"
+          />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="phone">Phone</Label>
-          <Input id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
+          <Label htmlFor="phone">Mobile Number</Label>
+          <Input
+            id="phone"
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            required
+            autoComplete="tel"
+          />
         </div>
         <div className="space-y-2">
           <Label htmlFor="password">Password</Label>
@@ -97,7 +137,12 @@ export function SignupForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autoComplete="new-password"
+            aria-describedby="password-requirements"
           />
+          {weakPassword && (
+            <p className="text-xs text-destructive">Password does not meet requirements.</p>
+          )}
         </div>
         <div className="space-y-2">
           <Label htmlFor="confirmPassword">Confirm Password</Label>
@@ -107,30 +152,52 @@ export function SignupForm() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
+            autoComplete="new-password"
           />
           {passwordMismatch && <p className="text-xs text-destructive">Passwords do not match.</p>}
         </div>
         <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="referralCode">Referral Code (Optional)</Label>
+          <Label htmlFor="branchName">Branch Name (Optional)</Label>
           <Input
-            id="referralCode"
-            value={referralCode}
-            onChange={(e) => setReferralCode(e.target.value)}
-            placeholder="Enter referral code"
+            id="branchName"
+            value={branchName}
+            onChange={(e) => setBranchName(e.target.value)}
+            placeholder="Main Branch"
           />
         </div>
       </div>
 
-      <Button type="submit" size="lg" disabled={isLoading || passwordMismatch} className="w-full sm:w-auto">
+      <div id="password-requirements" className="rounded-xl bg-slate-50 px-4 py-3 text-xs text-muted-foreground">
+        <p className="font-medium text-foreground">Password requirements</p>
+        <ul className="mt-2 list-disc space-y-1 pl-4">
+          {PASSWORD_RULES.map((rule) => (
+            <li key={rule}>{rule}</li>
+          ))}
+        </ul>
+      </div>
+
+      <Button
+        type="submit"
+        size="lg"
+        disabled={isLoading || passwordMismatch || weakPassword}
+        className="btn-marketing w-full sm:w-auto"
+      >
         {isLoading ? (
           <>
             <Loader2 className="size-4 animate-spin" />
-            Creating account...
+            Creating trial account...
           </>
         ) : (
-          "Create Account"
+          "Start Free Trial"
         )}
       </Button>
+
+      <p className="text-sm text-muted-foreground">
+        Already have an account?{" "}
+        <Link href="/login" className="font-medium text-primary hover:underline">
+          Login
+        </Link>
+      </p>
 
       {error && (
         <Alert tone="error">

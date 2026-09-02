@@ -1,58 +1,93 @@
 import type { Metadata } from "next";
 import { CheckCircle2 } from "lucide-react";
-import { buildMetadata } from "@/lib/metadata";
+import { customerPortal, workshopPortal } from "@/data/features";
 import { PageShell } from "@/features/shared/page-shell";
+import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
   title: "Solutions",
-  description: "Explore how Prime Detailers supports workshop owners, branch managers, finance teams, and service advisors.",
+  description:
+    "See how Prime Detailers supports workshop owners, managers, staff, and customers across operations and self-service.",
   path: "/solutions",
 });
 
 const solutionBlocks = [
   {
     title: "For Workshop Owners",
-    description: "Get centralized operational and financial visibility across service jobs, billing, and branch activity.",
-    bullets: ["Branch-wise insights", "Revenue and expense visibility", "Faster decision-making"],
+    description:
+      "Centralize operations, billing visibility, and multi-branch growth in one SaaS platform.",
+    bullets: ["Operational clarity", "Plan-based branch growth", "Connected customer experience"],
   },
   {
-    title: "For Service Advisors",
-    description: "Run check-in, inspection, status updates, and delivery with transparent customer communication.",
-    bullets: ["Job card workflows", "Photo-based communication", "Customer reminders"],
+    title: "For Managers & Staff",
+    description:
+      "Run job cards, customer updates, inventory checks, and daily workflows without tool-switching.",
+    bullets: ["Job card workflows", "Role-based access", "Shared workshop data"],
   },
   {
-    title: "For Inventory Teams",
-    description: "Manage parts catalog, purchases, and stock movement with less manual confusion.",
-    bullets: ["Stock tracking", "Counter sales", "Low-stock alerts"],
+    title: "For Inventory & Billing",
+    description:
+      "Keep parts, invoices, and payments connected to the jobs that generate them.",
+    bullets: ["Stock awareness", "Invoice lifecycle", "Payment tracking"],
   },
   {
-    title: "For Finance Teams",
-    description: "Track invoices, payments, receivables, payables, and reporting from one connected platform.",
-    bullets: ["Invoice lifecycle", "Cash visibility", "Accounting-oriented reporting"],
+    title: "For Customers",
+    description:
+      "Offer a self-service portal for job tracking, invoices, history, and rewards where enabled.",
+    bullets: ["Track job status", "View invoices", "Access service history"],
   },
 ];
 
 export default function SolutionsPage() {
   return (
     <PageShell
-      title="Solutions for Every Workshop Role"
-      description="Prime Detailers supports different responsibilities across operations, customer experience, inventory, finance, and leadership."
+      title="Solutions for workshops and the customers they serve"
+      description="Prime Detailers is built for automotive service businesses — and the people who keep them running every day."
     >
       <div className="grid gap-4 md:grid-cols-2">
         {solutionBlocks.map((block) => (
-          <article key={block.title} className="marketing-surface p-6">
+          <article key={block.title} className="rounded-2xl border border-border bg-white p-6">
             <h2 className="text-xl font-semibold">{block.title}</h2>
             <p className="mt-2 text-sm text-muted-foreground">{block.description}</p>
             <ul className="mt-4 space-y-2 text-sm text-foreground">
               {block.bullets.map((bullet) => (
                 <li key={bullet} className="flex items-center gap-2">
-                  <CheckCircle2 className="size-4 text-primary" />
+                  <CheckCircle2 className="size-4 text-primary" aria-hidden />
                   {bullet}
                 </li>
               ))}
             </ul>
           </article>
         ))}
+      </div>
+
+      <div className="mt-8 grid gap-4 lg:grid-cols-2">
+        <article className="rounded-2xl border border-border bg-slate-950 p-6 text-white">
+          <h2 className="text-xl font-semibold">{workshopPortal.title}</h2>
+          <p className="mt-2 text-sm text-slate-300">
+            For {workshopPortal.audience.join(", ")}
+          </p>
+          <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+            {workshopPortal.features.map((item) => (
+              <li key={item} className="text-sm text-slate-200">
+                • {item}
+              </li>
+            ))}
+          </ul>
+        </article>
+        <article className="rounded-2xl border border-border bg-white p-6">
+          <h2 className="text-xl font-semibold">{customerPortal.title}</h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            For {customerPortal.audience.join(", ")}
+          </p>
+          <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+            {customerPortal.features.map((item) => (
+              <li key={item} className="text-sm text-foreground">
+                • {item}
+              </li>
+            ))}
+          </ul>
+        </article>
       </div>
     </PageShell>
   );

@@ -1,21 +1,36 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { PageShell } from "@/features/shared/page-shell";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Demo",
-  description: "Request a guided product demo for Prime Detailers workshop management platform.",
+  title: "Book a Demo",
+  description: "Talk to Prime Detailers about a workshop walkthrough, pricing, or multi-branch rollout.",
   path: "/demo",
 });
 
 export default function DemoPage() {
   return (
     <PageShell
-      title="Product Demo"
-      description="Demo scheduling workflow can be added once backend lead-routing endpoint is available."
+      title="Talk to sales"
+      description="Share your workshop needs and we will help you understand the right plan and rollout path."
+      showCta={false}
     >
-      <div className="rounded-xl border border-border bg-card p-5 text-sm text-muted-foreground">
-        Demo request automation is not configured yet. Please use the Contact page for demo requests.
+      <div className="rounded-2xl border border-border bg-white p-6 sm:p-8">
+        <p className="text-sm text-muted-foreground">
+          Demo booking is currently routed through the contact form while backend scheduling is prepared.
+        </p>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <Link href="/contact">
+            <Button className="btn-marketing">Talk to Sales</Button>
+          </Link>
+          <Link href="/signup">
+            <Button variant="outline" className="btn-marketing">
+              Start Free Trial
+            </Button>
+          </Link>
+        </div>
       </div>
     </PageShell>
   );

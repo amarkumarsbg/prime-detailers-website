@@ -5,15 +5,16 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
   title: "Contact",
-  description: "Connect with Prime Detailers for product, onboarding, and pricing support.",
+  description:
+    "Contact Prime Detailers for product questions, free trial help, pricing guidance, or sales conversations.",
   path: "/contact",
 });
 
 export default function ContactPage() {
   return (
     <PageShell
-      title="Contact Prime Detailers"
-      description="Share your details and workshop needs. Our team will connect for product guidance and onboarding."
+      title="Talk to the Prime Detailers team"
+      description="Share your workshop details and we will follow up about product fit, pricing, or onboarding."
     >
       <ContactForm />
     </PageShell>

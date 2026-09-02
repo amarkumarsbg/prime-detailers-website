@@ -59,6 +59,7 @@ export interface SignupInput {
   email: string;
   phone: string;
   password: string;
+  branchName?: string;
   referralCode?: string;
 }
 
