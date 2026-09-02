@@ -18,8 +18,8 @@ export function Navbar() {
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
   const menuId = useId();
   const isClickScrolling = useRef(false);
-  const scrollTimeout = useRef<NodeJS.Timeout>();
-  const hoverTimeout = useRef<NodeJS.Timeout>();
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+  const hoverTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const handleMouseEnter = (label: string) => {
     if (hoverTimeout.current) clearTimeout(hoverTimeout.current);

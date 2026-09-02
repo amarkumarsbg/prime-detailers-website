@@ -47,8 +47,8 @@ export function ForgotPasswordForm() {
           We've sent a password reset link to <span className="font-semibold text-slate-900">{email}</span>.
         </p>
         <div className="pt-4">
-          <Button asChild className="w-full h-11 rounded-lg bg-teal-600 hover:bg-teal-700 text-white font-medium shadow-sm">
-            <Link href="/login">Return to Login</Link>
+          <Button type="button" className="w-full h-11 p-0 rounded-lg bg-teal-600 hover:bg-teal-700 text-white font-medium shadow-sm">
+            <Link href="/login" className="w-full h-full flex items-center justify-center">Return to Login</Link>
           </Button>
         </div>
       </div>
@@ -83,16 +83,20 @@ export function ForgotPasswordForm() {
       </Button>
 
       <div className="text-center mt-6">
-        <Link href="/login" className="text-sm font-semibold text-teal-600 hover:underline">
-          Back to Sign In
-        </Link>
+        <Button type="button" variant="ghost" className="w-full text-teal-600 hover:text-teal-700 hover:bg-teal-50">
+          <Link href="/login" className="w-full h-full flex items-center justify-center">
+            Back to Sign In
+          </Link>
+        </Button>
       </div>
 
       {error && (
-        <Alert tone="error" className="mt-4">
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
+        <div className="mt-6">
+          <Alert tone="error">
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        </div>
       )}
     </form>
   );

@@ -46,7 +46,7 @@ export function Footer() {
             <p className="text-sm font-bold text-slate-900">
               Product By <span className="text-teal-600">PrimeDetailers</span>
             </p>
-            <Button className="rounded-full bg-[#d94826] hover:bg-[#c23e1e] text-white px-6">
+            <Button className="rounded-full bg-teal-600 hover:bg-teal-700 text-white px-6">
               Access Platform <ArrowRight className="ml-2 size-4" />
             </Button>
           </div>
@@ -80,11 +80,11 @@ export function Footer() {
             <h3 className="mb-6 text-sm font-bold text-slate-900 uppercase">Contact</h3>
             <div className="space-y-4 text-sm font-medium text-slate-600">
               <div className="flex items-start gap-3">
-                <Phone className="size-5 text-[#d94826] shrink-0 mt-0.5" />
+                <Phone className="size-5 text-teal-600 shrink-0 mt-0.5" />
                 <span>+91 7574045260 | +91 8866484903</span>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="size-5 text-[#d94826] shrink-0" />
+                <Mail className="size-5 text-teal-600 shrink-0" />
                 <a href="mailto:contact@primedetailers.com" className="hover:text-teal-600 transition-colors">
                   contact@primedetailers.com
                 </a>
@@ -96,20 +96,20 @@ export function Footer() {
         {/* Bottom Section */}
         <div className="flex flex-col gap-6 border-t border-slate-200 pt-8 sm:flex-row sm:items-center sm:justify-between relative">
           <p className="text-sm font-medium text-slate-500">
-            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved by <span className="text-[#d94826] font-bold">PrimeDetailers</span>
+            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved by <span className="text-teal-600 font-bold">PrimeDetailers</span>
           </p>
 
           <div className="flex items-center gap-4">
-            <a href="#" className="flex size-8 items-center justify-center rounded-full bg-[#fcedea] text-[#d94826] transition-transform hover:scale-110">
+            <a href="#" className="flex size-8 items-center justify-center rounded-full bg-teal-50 text-teal-600 transition-transform hover:bg-teal-100 hover:scale-110">
               <FacebookIcon className="size-4" />
             </a>
-            <a href="#" className="flex size-8 items-center justify-center rounded-full bg-[#fcedea] text-[#d94826] transition-transform hover:scale-110">
+            <a href="#" className="flex size-8 items-center justify-center rounded-full bg-teal-50 text-teal-600 transition-transform hover:bg-teal-100 hover:scale-110">
               <InstagramIcon className="size-4" />
             </a>
-            <a href="#" className="flex size-8 items-center justify-center rounded-full bg-[#fcedea] text-[#d94826] transition-transform hover:scale-110">
+            <a href="#" className="flex size-8 items-center justify-center rounded-full bg-teal-50 text-teal-600 transition-transform hover:bg-teal-100 hover:scale-110">
               <YoutubeIcon className="size-4" />
             </a>
-            <a href="#" className="flex size-8 items-center justify-center rounded-full bg-[#fcedea] text-[#d94826] transition-transform hover:scale-110">
+            <a href="#" className="flex size-8 items-center justify-center rounded-full bg-teal-50 text-teal-600 transition-transform hover:bg-teal-100 hover:scale-110">
               <LinkedinIcon className="size-4" />
             </a>
           </div>
@@ -118,17 +118,6 @@ export function Footer() {
             <Link href="/privacy" className="hover:text-slate-900">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-slate-900">Terms of Service</Link>
           </div>
-
-          {/* Scroll to top button */}
-          <button
-            onClick={scrollToTop}
-            className={`absolute right-0 -top-6 flex size-12 items-center justify-center rounded-full bg-[#d94826] text-white shadow-lg transition-all hover:bg-[#c23e1e] ${
-              showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
-            }`}
-            aria-label="Scroll to top"
-          >
-            <ChevronUp className="size-6" />
-          </button>
         </div>
       </div>
     </footer>

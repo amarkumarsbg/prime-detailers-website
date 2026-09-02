@@ -185,17 +185,21 @@ export function SignupForm() {
       </p>
 
       {error && (
-        <Alert tone="error" className="mt-4">
-          <AlertTitle>Signup failed</AlertTitle>
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
+        <div className="mt-6">
+          <Alert tone="error">
+            <AlertTitle>Signup failed</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        </div>
       )}
 
       {success && (
-        <Alert tone="success" className="mt-4">
-          <AlertTitle>Signup submitted</AlertTitle>
-          <AlertDescription>{success}</AlertDescription>
-        </Alert>
+        <div className="mt-6">
+          <Alert tone="success">
+            <AlertTitle>Signup submitted</AlertTitle>
+            <AlertDescription>Account created successfully! Welcome to Prime Detailers.</AlertDescription>
+          </Alert>
+        </div>
       )}
     </form>
   );

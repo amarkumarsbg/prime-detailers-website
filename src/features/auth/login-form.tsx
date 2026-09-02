@@ -95,17 +95,21 @@ export function LoginForm() {
       </p>
 
       {error && (
-        <Alert tone="error" className="mt-4">
-          <AlertTitle>Sign in failed</AlertTitle>
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
+        <div className="mt-6">
+          <Alert tone="error">
+            <AlertTitle>Sign in failed</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        </div>
       )}
 
       {success && (
-        <Alert tone="success" className="mt-4">
-          <AlertTitle>Ready for integration</AlertTitle>
-          <AlertDescription>{success}</AlertDescription>
-        </Alert>
+        <div className="mt-6">
+          <Alert tone="success">
+            <AlertTitle>Success</AlertTitle>
+            <AlertDescription>Login successful! Redirecting...</AlertDescription>
+          </Alert>
+        </div>
       )}
     </form>
   );
