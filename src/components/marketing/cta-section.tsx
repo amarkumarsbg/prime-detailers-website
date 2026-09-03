@@ -20,7 +20,7 @@ export function CtaSection({
   secondaryHref?: string;
 }) {
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+    <section className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
       <FadeIn className="relative overflow-hidden rounded-3xl px-6 py-16 text-center shadow-2xl sm:px-16 sm:py-20 lg:px-24 border border-white/10">
         {/* Background Image */}
         <div className="absolute inset-0 -z-20">

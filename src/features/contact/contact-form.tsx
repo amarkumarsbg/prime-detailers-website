@@ -5,7 +5,7 @@ import { Loader2 } from "lucide-react";
 import { submitContactPublic } from "@/services/contact";
 import { mapApiError } from "@/lib/error-messages";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { FloatingInput } from "@/components/ui/floating-input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription, AlertTitle } from "@/features/shared/alert";
 
@@ -43,27 +43,24 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-border bg-white p-6 sm:p-8">
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label htmlFor="name">Name</Label>
-          <Input id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+      <div className="grid gap-x-4 sm:grid-cols-2">
+        <div>
+          <FloatingInput id="name" label="Name" value={name} onChange={(e) => setName(e.target.value)} required />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="businessName">Business Name</Label>
-          <Input
+        <div>
+          <FloatingInput
             id="businessName"
+            label="Business Name"
             value={businessName}
             onChange={(e) => setBusinessName(e.target.value)}
             required
           />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <div>
+          <FloatingInput id="email" type="email" label="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="phone">Phone</Label>
-          <Input id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
+        <div>
+          <FloatingInput id="phone" label="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
         </div>
       </div>
 

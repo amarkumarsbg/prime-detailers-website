@@ -4,8 +4,7 @@ import { FormEvent, useState } from "react";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { FloatingInput } from "@/components/ui/floating-input";
 import { Alert, AlertDescription, AlertTitle } from "@/features/shared/alert";
 
 export function ForgotPasswordForm() {
@@ -31,9 +30,6 @@ export function ForgotPasswordForm() {
     }
   }
 
-  const inputClasses = "bg-white border-slate-300 text-slate-900 focus-visible:ring-teal-600 focus-visible:border-teal-600 rounded-lg h-11 shadow-sm";
-  const labelClasses = "text-sm font-semibold text-slate-900";
-
   if (success) {
     return (
       <div className="space-y-6 text-center">
@@ -56,14 +52,13 @@ export function ForgotPasswordForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="space-y-2 text-left">
-        <Label htmlFor="email" className={labelClasses}>Email Address</Label>
-        <Input
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="text-left">
+        <FloatingInput
           id="email"
           type="email"
-          placeholder="Enter your registered email"
-          className={inputClasses}
+          label="Email Address"
+          placeholder="example@gmail.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required

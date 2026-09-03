@@ -11,11 +11,15 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
     pathname === "/login" || 
     pathname === "/signup" || 
     pathname === "/forgot-password";
+  
+  // Feature pages have dark hero sections that need to reach the absolute top of the screen
+  const isFeaturePage = pathname.startsWith("/features/");
+  const hasNoTopPadding = isAuthPage || isFeaturePage;
 
   return (
     <div className="relative flex min-h-screen flex-col overflow-x-hidden">
       {!isAuthPage && <Navbar />}
-      <main className={!isAuthPage ? "flex-1 pt-14 sm:pt-16" : "flex-1"}>
+      <main className={hasNoTopPadding ? "flex-1" : "flex-1 pt-14 sm:pt-16"}>
         {children}
       </main>
       {!isAuthPage && <Footer />}

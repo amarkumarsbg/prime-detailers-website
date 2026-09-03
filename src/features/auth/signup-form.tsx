@@ -6,8 +6,7 @@ import { Loader2 } from "lucide-react";
 import { signupPublic } from "@/services/signup";
 import { mapApiError } from "@/lib/error-messages";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { FloatingInput } from "@/components/ui/floating-input";
 import { Alert, AlertDescription, AlertTitle } from "@/features/shared/alert";
 import { cn } from "@/lib/utils";
 
@@ -69,12 +68,11 @@ export function SignupForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       
-      <div className="grid gap-5 sm:grid-cols-2 text-left">
-        <div className="space-y-2">
-          <Label htmlFor="ownerName" className={labelClasses}>Full Name</Label>
-          <Input
+      <div className="grid gap-x-5 sm:grid-cols-2 text-left">
+        <div>
+          <FloatingInput
             id="ownerName"
-            className={inputClasses}
+            label="Full Name"
             value={ownerName}
             onChange={(e) => setOwnerName(e.target.value)}
             required
@@ -82,12 +80,11 @@ export function SignupForm() {
             placeholder="John Doe"
           />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="email" className={labelClasses}>Email Address</Label>
-          <Input
+        <div>
+          <FloatingInput
             id="email"
             type="email"
-            className={inputClasses}
+            label="Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -95,16 +92,15 @@ export function SignupForm() {
             placeholder="john@example.com"
           />
         </div>
-        <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="phone" className={labelClasses}>Phone Number</Label>
-          <div className="flex gap-2">
-            <div className="flex items-center justify-center px-3 border border-slate-300 rounded-lg bg-slate-50 text-sm">
-              🇮🇳 +91
-            </div>
-            <Input
+        <div className="sm:col-span-2 flex gap-2">
+          <div className="flex items-center justify-center px-4 mt-2 mb-4 border-2 border-slate-300 rounded-md bg-slate-50 text-sm h-[52px]">
+            🇮🇳 +91
+          </div>
+          <div className="flex-1">
+            <FloatingInput
               id="phone"
               type="tel"
-              className={cn(inputClasses, "flex-1")}
+              label="Phone Number"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
@@ -113,11 +109,10 @@ export function SignupForm() {
             />
           </div>
         </div>
-        <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="businessName" className={labelClasses}>Workshop / Company Name</Label>
-          <Input
+        <div className="sm:col-span-2">
+          <FloatingInput
             id="businessName"
-            className={inputClasses}
+            label="Workshop / Company Name"
             value={businessName}
             onChange={(e) => setBusinessName(e.target.value)}
             required
@@ -126,12 +121,11 @@ export function SignupForm() {
           />
         </div>
         
-        <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="password" className={labelClasses}>Password</Label>
-          <Input
+        <div className="sm:col-span-2">
+          <FloatingInput
             id="password"
             type="password"
-            className={inputClasses}
+            label="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -140,19 +134,18 @@ export function SignupForm() {
           />
         </div>
         
-        <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="confirmPassword" className={labelClasses}>Confirm Password</Label>
-          <Input
+        <div className="sm:col-span-2">
+          <FloatingInput
             id="confirmPassword"
             type="password"
-            className={inputClasses}
+            label="Confirm Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
             autoComplete="new-password"
             placeholder="Confirm password"
           />
-          {passwordMismatch && <p className="text-xs text-red-600 font-medium">Passwords do not match.</p>}
+          {passwordMismatch && <p className="text-xs text-red-600 font-medium -mt-2 mb-4">Passwords do not match.</p>}
         </div>
       </div>
 

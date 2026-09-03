@@ -6,8 +6,7 @@ import { Loader2 } from "lucide-react";
 import { loginPublic } from "@/services/auth";
 import { mapApiError } from "@/lib/error-messages";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { FloatingInput } from "@/components/ui/floating-input";
 import { Alert, AlertDescription, AlertTitle } from "@/features/shared/alert";
 import { cn } from "@/lib/utils";
 
@@ -41,22 +40,20 @@ export function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="space-y-2 text-left">
-        <Label htmlFor="email" className={labelClasses}>Email / Phone Number</Label>
-        <Input
+      <div className="text-left">
+        <FloatingInput
           id="email"
           type="email"
-          placeholder="Enter your email or phone number"
-          className={inputClasses}
+          label="Email / Phone Number"
+          placeholder="example@gmail.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
           autoComplete="email"
         />
       </div>
-      <div className="space-y-2 text-left">
-        <div className="flex items-center justify-between gap-3">
-          <Label htmlFor="password" className={labelClasses}>Password</Label>
+      <div className="text-left">
+        <div className="flex justify-end mb-1">
           <Link
             href="/forgot-password"
             className="text-xs font-semibold text-teal-700 hover:text-teal-600"
@@ -64,11 +61,11 @@ export function LoginForm() {
             Forgot Password?
           </Link>
         </div>
-        <Input
+        <FloatingInput
           id="password"
           type="password"
-          placeholder="Enter your password"
-          className={inputClasses}
+          label="Password"
+          placeholder="••••••••"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required

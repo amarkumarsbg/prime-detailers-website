@@ -249,18 +249,17 @@ export function Navbar() {
             <div className="p-8 flex gap-8 justify-between max-w-7xl mx-auto">
               {primaryNav.find(i => i.label === hoveredNav)!.megaMenu!.map(column => (
                 <div key={column.title} className="flex-1">
-                  <div className="inline-flex rounded-full bg-[#fde9e7] px-3 py-1 mb-4">
-                    <span className="text-[13px] font-bold text-[#c43221] whitespace-nowrap">{column.title}</span>
-                  </div>
+                  <h4 className="text-[12px] font-bold tracking-wider text-slate-900 uppercase mb-4 pb-2 border-b border-slate-100">
+                    {column.title}
+                  </h4>
                   <ul className="space-y-3">
                     {column.items.map(link => (
                       <li key={link.label}>
                          <Link 
                            href={link.href} 
-                           className="text-[13px] text-slate-600 font-medium hover:text-[#c43221] flex items-center gap-2 transition-colors"
+                           className="text-[13px] text-slate-500 font-medium hover:text-teal-600 transition-all hover:translate-x-1 flex items-center"
                            onClick={() => setHoveredNav(null)}
                          >
-                           <span className="size-1 rounded-full bg-[#e3aaa3] flex-shrink-0" />
                            {link.label}
                          </Link>
                       </li>

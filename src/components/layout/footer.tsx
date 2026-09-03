@@ -5,6 +5,7 @@ import { siteConfig } from "@/config/site";
 import { ArrowRight, Phone, Mail, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { footerNav } from "@/data/navigation";
 
 export function Footer() {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -22,101 +23,140 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-[#fafafa] pt-16 pb-8 border-t border-slate-200">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[2fr_1fr_1fr_1.5fr] mb-16">
-          {/* Column 1: Brand & CTA */}
-          <div className="space-y-6">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="flex size-10 items-center justify-center rounded-xl bg-teal-600 shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:shadow-lg">
+    <footer className="bg-slate-950 pt-16 pb-8 border-t border-slate-900 text-slate-300">
+      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-5 mb-16">
+          
+          {/* Column 1: Brand & Gen Links */}
+          <div className="space-y-6 lg:pr-8">
+            <Link href="/" className="flex items-center gap-2 group mb-6">
+              <div className="flex size-10 items-center justify-center rounded-xl bg-teal-600 shadow-md">
                 <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-6">
-                  {/* Sparkle/Diamond for 'Detailers' */}
                   <path d="M16 6L18.5 13.5L26 16L18.5 18.5L16 26L13.5 18.5L6 16L13.5 13.5L16 6Z" fill="white" />
-                  {/* Outer Shield/Badge for 'Prime' Protection */}
                   <path d="M16 3L27 8V16C27 22 22.5 27 16 29C9.5 27 5 22 5 16V8L16 3Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="white" fillOpacity="0.2" />
                 </svg>
               </div>
-              <span className="font-heading text-xl font-bold tracking-tight text-slate-900">
+              <span className="font-heading text-xl font-bold tracking-tight text-white">
                 {siteConfig.name}
               </span>
             </Link>
-            <p className="max-w-xs text-sm leading-relaxed text-slate-600">
-              Prime Detailers is a complete Garage Management Software for car workshops. Manage Job Cards, GST Billing, Inventory, Customer History, Service Reminders & Reports from one platform.
+            
+            <p className="text-sm leading-relaxed text-slate-400">
+              Get an AI summary of your workshop operations. Manage Job Cards, GST Billing, and Inventory from one intelligent platform.
             </p>
-            <p className="text-sm font-bold text-slate-900">
-              Product By <span className="text-teal-600">PrimeDetailers</span>
-            </p>
-            <Button className="rounded-full bg-teal-600 hover:bg-teal-700 text-white px-6">
-              Access Platform <ArrowRight className="ml-2 size-4" />
-            </Button>
-          </div>
-
-          {/* Column 2: Quick Links */}
-          <div>
-            <h3 className="mb-6 text-sm font-bold text-slate-900 uppercase">Quick Links</h3>
-            <ul className="space-y-4 text-sm font-medium text-slate-600">
-              <li><Link href="/" className="hover:text-teal-600 transition-colors">Home</Link></li>
-              <li><Link href="/features" className="hover:text-teal-600 transition-colors">Features</Link></li>
-              <li><Link href="/pricing" className="hover:text-teal-600 transition-colors">Pricing</Link></li>
-              <li><Link href="/demo" className="hover:text-teal-600 transition-colors">Book Demo</Link></li>
-              <li><Link href="/contact" className="hover:text-teal-600 transition-colors">Contact</Link></li>
+            
+            <ul className="space-y-3 text-sm font-medium pt-4 border-t border-slate-800">
+              {footerNav.column1.map((item, i) => (
+                <li key={i}><Link href={item.href} className="hover:text-white transition-colors">{item.label}</Link></li>
+              ))}
             </ul>
           </div>
 
-          {/* Column 3: Features */}
+          {/* Column 2: Considering */}
           <div>
-            <h3 className="mb-6 text-sm font-bold text-slate-900 uppercase">Features</h3>
-            <ul className="space-y-4 text-sm font-medium text-slate-600">
-              <li><Link href="/features#job-cards" className="hover:text-teal-600 transition-colors">Job Cards</Link></li>
-              <li><Link href="/features#billing" className="hover:text-teal-600 transition-colors">GST Billing</Link></li>
-              <li><Link href="/features#inventory" className="hover:text-teal-600 transition-colors">Inventory</Link></li>
-              <li><Link href="/features#reports" className="hover:text-teal-600 transition-colors">Reports</Link></li>
-              <li><Link href="/features#history" className="hover:text-teal-600 transition-colors">Customer History</Link></li>
+            <h3 className="mb-4 pb-2 text-xs font-bold text-white uppercase tracking-wider border-b border-slate-800 inline-block">
+              Considering Prime Detailers?
+            </h3>
+            <ul className="space-y-4 text-sm font-medium">
+              {footerNav.considering.map((item, i) => (
+                <li key={i}><Link href={item.href} className="hover:text-white transition-colors">{item.label}</Link></li>
+              ))}
             </ul>
-          </div>
-
-          {/* Column 4: Contact */}
-          <div>
-            <h3 className="mb-6 text-sm font-bold text-slate-900 uppercase">Contact</h3>
-            <div className="space-y-4 text-sm font-medium text-slate-600">
-              <div className="flex items-start gap-3">
-                <Phone className="size-5 text-teal-600 shrink-0 mt-0.5" />
-                <span>+91 7574045260 | +91 8866484903</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Mail className="size-5 text-teal-600 shrink-0" />
-                <a href="mailto:contact@primedetailers.com" className="hover:text-teal-600 transition-colors">
-                  contact@primedetailers.com
-                </a>
-              </div>
+            <div className="mt-6">
+              <Link href="/login" className="text-sm font-bold text-teal-500 hover:text-teal-400 flex items-center group">
+                Why Prime Detailers <ArrowRight className="ml-1 size-3 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
           </div>
+
+          {/* Column 3: Products */}
+          <div>
+            <h3 className="mb-4 pb-2 text-xs font-bold text-white uppercase tracking-wider border-b border-slate-800 inline-block">
+              Products and Features
+            </h3>
+            <ul className="space-y-4 text-sm font-medium">
+              {footerNav.products.map((item, i) => (
+                <li key={i}><Link href={item.href} className="hover:text-white transition-colors">{item.label}</Link></li>
+              ))}
+            </ul>
+            <div className="mt-6">
+              <Link href="/features" className="text-sm font-bold text-teal-500 hover:text-teal-400 flex items-center group">
+                All products <ArrowRight className="ml-1 size-3 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Column 4: Use Cases */}
+          <div>
+            <h3 className="mb-4 pb-2 text-xs font-bold text-white uppercase tracking-wider border-b border-slate-800 inline-block">
+              Use Cases
+            </h3>
+            <ul className="space-y-4 text-sm font-medium">
+              {footerNav.useCases.map((item, i) => (
+                <li key={i}><Link href={item.href} className="hover:text-white transition-colors">{item.label}</Link></li>
+              ))}
+            </ul>
+            <div className="mt-6">
+              <Link href="/solutions" className="text-sm font-bold text-teal-500 hover:text-teal-400 flex items-center group">
+                All use cases <ArrowRight className="ml-1 size-3 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Column 5: Resources */}
+          <div>
+            <h3 className="mb-4 pb-2 text-xs font-bold text-white uppercase tracking-wider border-b border-slate-800 inline-block">
+              Resources
+            </h3>
+            <ul className="space-y-4 text-sm font-medium">
+              {footerNav.resources.map((item, i) => (
+                <li key={i}><Link href={item.href} className="hover:text-white transition-colors">{item.label}</Link></li>
+              ))}
+            </ul>
+            <div className="mt-6">
+              <Link href="/contact" className="text-sm font-bold text-teal-500 hover:text-teal-400 flex items-center group">
+                All docs <ArrowRight className="ml-1 size-3 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </div>
+          
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col gap-6 border-t border-slate-200 pt-8 sm:flex-row sm:items-center sm:justify-between relative">
-          <p className="text-sm font-medium text-slate-500">
-            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved by <span className="text-teal-600 font-bold">PrimeDetailers</span>
-          </p>
-
-          <div className="flex items-center gap-4">
-            <a href="#" className="flex size-8 items-center justify-center rounded-full bg-teal-50 text-teal-600 transition-transform hover:bg-teal-100 hover:scale-110">
-              <FacebookIcon className="size-4" />
+        <div className="grid grid-cols-1 gap-6 border-t border-slate-800 pt-8 sm:grid-cols-3 sm:items-center">
+          
+          {/* Left: Social Media */}
+          <div className="flex items-center justify-center sm:justify-start gap-4 order-2 sm:order-1">
+            <a href="#" className="text-slate-500 hover:text-white transition-colors">
+              <FacebookIcon className="size-5" />
             </a>
-            <a href="#" className="flex size-8 items-center justify-center rounded-full bg-teal-50 text-teal-600 transition-transform hover:bg-teal-100 hover:scale-110">
-              <InstagramIcon className="size-4" />
+            <a href="#" className="text-slate-500 hover:text-white transition-colors">
+              <InstagramIcon className="size-5" />
             </a>
-            <a href="#" className="flex size-8 items-center justify-center rounded-full bg-teal-50 text-teal-600 transition-transform hover:bg-teal-100 hover:scale-110">
-              <YoutubeIcon className="size-4" />
+            <a href="#" className="text-slate-500 hover:text-white transition-colors">
+              <YoutubeIcon className="size-5" />
             </a>
-            <a href="#" className="flex size-8 items-center justify-center rounded-full bg-teal-50 text-teal-600 transition-transform hover:bg-teal-100 hover:scale-110">
-              <LinkedinIcon className="size-4" />
+            <a href="#" className="text-slate-500 hover:text-white transition-colors">
+              <LinkedinIcon className="size-5" />
             </a>
           </div>
 
-          <div className="flex items-center gap-6 text-sm font-medium text-slate-500">
-            <Link href="/privacy" className="hover:text-slate-900">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-slate-900">Terms of Service</Link>
+          {/* Center: Copyright */}
+          <div className="flex items-center justify-center order-3 sm:order-2">
+            <p className="text-xs text-slate-500 text-center">
+              © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+            </p>
+          </div>
+
+          {/* Right: Logo */}
+          <div className="flex items-center justify-center sm:justify-end order-1 sm:order-3">
+            <Link href="/" className="flex items-center gap-2 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+              <div className="flex size-6 items-center justify-center rounded bg-teal-600">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-4">
+                  <path d="M16 6L18.5 13.5L26 16L18.5 18.5L16 26L13.5 18.5L6 16L13.5 13.5L16 6Z" fill="white" />
+                </svg>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
